@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Idul Fitri ✨</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0d1b2a, #000);
+  color: white;
+}
+
+/* 🌙 Bulan */
+.moon {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 80px;
+  height: 80px;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #ffd700;
+}
+
+.moon::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  background: #0d1b2a;
+  border-radius: 50%;
+}
+
+/* 🌟 Bintang */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  50% {opacity: 0.2;}
+}
+
+/* 💌 Card */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  width: 85%;
+  max-width: 400px;
+}
+
+/* ✨ Title */
+h1 {
+  color: #ffd700;
+  text-shadow: 0 0 15px #ffd700;
+}
+
+/* ⌨️ Typing */
+.typing {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* 🧾 Nama */
+.name {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* 🔘 Button */
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ffd700;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* 💫 Confetti */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: red;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<div class="card">
+  <h1>🌙 Minal Aidzin Wal Faizin ✨</h1>
+  <div class="typing" id="text"></div>
+
+  <div class="name">— AzZahra Mauliya Needa —</div>
+
+  <button class="btn" onclick="celebrate()">Klik Ucapan 💌</button>
+</div>
+
+<!-- 🎶 Musik -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* 🌟 Bintang */
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  document.body.appendChild(star);
+}
+
+/* ⌨️ Typing */
+const message = `Mohon maaf lahir dan batin
+
+Dalam beningnya hati setelah sebulan menempa diri,
+izinkan saya mengucapkan maaf atas segala kata yang pernah terucap,
+sikap yang mungkin tidak berkenan,
+dan segala khilaf yang tanpa sadar terselip.
+
+Semoga di hari yang suci ini,
+kita kembali menjadi pribadi yang lebih bersih,
+lebih sabar, dan penuh keikhlasan 🤍`;
+
+let i = 0;
+function typing() {
+  if (i < message.length) {
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typing, 25);
+  }
+}
+typing();
+
+/* 💫 Confetti */
+function celebrate() {
+  alert("Selamat Idul Fitri 🌙✨");
+
+  for (let i = 0; i < 50; i++) {
+    let confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
