@@ -2,37 +2,40 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+
+<!-- ✅ WAJIB -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Idul Fitri ✨</title>
 
 <style>
 body {
   margin: 0;
-  padding: 0;
-  overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
   background: radial-gradient(circle at top, #0d1b2a, #000);
   color: white;
+  overflow-x: hidden; /* FIX */
 }
 
-/* 🌙 Bulan */
+/* 🌙 Bulan (responsive) */
 .moon {
   position: absolute;
-  top: 60px;
-  right: 80px;
-  width: 80px;
-  height: 80px;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
   background: #ffd700;
   border-radius: 50%;
-  box-shadow: 0 0 40px #ffd700;
+  box-shadow: 0 0 30px #ffd700;
 }
 
 .moon::after {
   content: '';
   position: absolute;
-  top: 10px;
-  left: 20px;
-  width: 80px;
-  height: 80px;
+  top: 8px;
+  left: 15px;
+  width: 60px;
+  height: 60px;
   background: #0d1b2a;
   border-radius: 50%;
 }
@@ -52,29 +55,29 @@ body {
 
 /* 💌 Card */
 .card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: 100px auto;
   background: rgba(255,255,255,0.08);
-  padding: 30px;
+  padding: 25px;
   border-radius: 20px;
   backdrop-filter: blur(15px);
   text-align: center;
-  width: 85%;
+  width: 90%;
   max-width: 400px;
 }
 
 /* ✨ Title */
 h1 {
   color: #ffd700;
-  text-shadow: 0 0 15px #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+  font-size: 22px;
 }
 
 /* ⌨️ Typing */
 .typing {
   font-size: 14px;
   line-height: 1.6;
+  margin-top: 10px;
   white-space: pre-line;
 }
 
@@ -88,7 +91,8 @@ h1 {
 /* 🔘 Button */
 .btn {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px;
+  width: 100%; /* FIX biar enak di HP */
   border: none;
   border-radius: 20px;
   background: #ffd700;
@@ -98,15 +102,15 @@ h1 {
 }
 
 .btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* 💫 Confetti */
 .confetti {
-  position: absolute;
+  position: fixed; /* FIX biar ga aneh */
+  top: 0;
   width: 8px;
   height: 8px;
-  background: red;
   animation: fall 3s linear forwards;
 }
 
@@ -114,6 +118,22 @@ h1 {
   to {
     transform: translateY(100vh) rotate(720deg);
     opacity: 0;
+  }
+}
+
+/* 📱 KHUSUS HP */
+@media (max-width: 480px) {
+  .card {
+    margin: 80px auto;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .typing {
+    font-size: 13px;
   }
 }
 </style>
@@ -132,18 +152,17 @@ h1 {
   <button class="btn" onclick="celebrate()">Klik Ucapan 💌</button>
 </div>
 
-<!-- 🎶 Musik -->
 <audio autoplay loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* 🌟 Bintang */
-for (let i = 0; i < 100; i++) {
+/* 🌟 Bintang FIX biar responsive */
+for (let i = 0; i < 80; i++) {
   let star = document.createElement("div");
   star.className = "star";
-  star.style.top = Math.random() * window.innerHeight + "px";
-  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(star);
 }
 
@@ -169,14 +188,14 @@ function typing() {
 }
 typing();
 
-/* 💫 Confetti */
+/* 💫 Confetti FIX */
 function celebrate() {
   alert("Selamat Idul Fitri 🌙✨");
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 40; i++) {
     let confetti = document.createElement("div");
     confetti.className = "confetti";
-    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
     document.body.appendChild(confetti);
 
